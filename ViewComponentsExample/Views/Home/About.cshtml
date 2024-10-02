@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<h1>About</h1>
+
+@{
+    PersonGridModel personGridModel = new PersonGridModel()
+            {
+                GridTitle = "Cousins List",
+                Persons = new List<Person>()
+                {
+                    new Person(){PersonName="Sahil", JobTitle="Student"},
+                    new Person(){PersonName="Saksham", JobTitle="Student"}
+
+                }
+            };
+}
+
+
+@* while passing parameter for personGridModel the "grid" name after new keyword must match with the name of parameter passed in InvokeAsync inside ViewComponent class *@
+
+@await Component.InvokeAsync("Grid", new
+{
+grid=personGridModel
+})
+
+
+
+
+
+@{
+    PersonGridModel personGridModel2 = new PersonGridModel()
+            {
+                GridTitle = "Friends List",
+                Persons = new List<Person>()
+                {
+                    new Person(){PersonName="Vivek", JobTitle="Engineer"},
+                    new Person(){PersonName="Ritesh", JobTitle="Engineer"}
+
+                }
+            };
+}
+
+<vc:grid grid="personGridModel2"></vc:grid>
